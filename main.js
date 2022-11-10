@@ -11,9 +11,21 @@ form.addEventListener("submit", function(e){
     e.preventDefault()
     taskList.push(taskInput.value)
     let li = document.createElement("li")
+    li.style.margin = "5px"
+    let button = document.createElement("button")
+    button.innerHTML = "Edit"
+    button.style.marginLeft = "10px"
     li.innerHTML = taskInput.value
+    button.addEventListener("click", function(e){
+        e.preventDefault()
+        let newTask = prompt("Enter new task")
+        li.innerHTML = newTask
+        li.classList.toggle("completed")
+        li.appendChild(button)
+    })
+    li.appendChild(button)
     li.addEventListener("click", function(){
-        li.classList.add("completed")
+        li.classList.toggle("completed")
     })
     taskUList.appendChild(li)
     taskInput.value = ""
